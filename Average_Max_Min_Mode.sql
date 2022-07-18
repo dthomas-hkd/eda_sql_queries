@@ -3,6 +3,8 @@
 Hakkoda.io - EDA Queries - Average_Mode_Max
 David Thomas Aguilar - david_thomas@hakkoda.io
 
+
+
 Query that obtains the Average, Max, Min and Mode of an specific attribute of a table.
 
 To achieve it, uses subqueries. The output should look like this, being value the result obtained:
@@ -14,6 +16,32 @@ To achieve it, uses subqueries. The output should look like this, being value th
 +─────────────────────+────────────────+──────────────────+──────────────────+
 
 If requiered more stats can be included by adding subqueries or more attributes by adding the same operation in each subquery.
+
+
+
+Example of a real query by joining 2 tables based on IDs obtanining the average, max, min and mode of attribute1:
+
+with total_accounts as (
+select 
+    attribute_1, id_1
+from SCHEMA.DATABASE.TABLE1 
+where id_1 is not null),
+
+group_by_id as (
+select 
+    account_id_2 , count (attribute_1) as total_id
+from SCHEMA.DATABASE.TABLE2 as t_accounts
+left join total_accounts on account_id = id_1
+group by 1
+order by 2 desc
+)
+select
+    avg(total_id) as average_attr_per_id
+    max (total_id) as max_attr_per_id
+    min (total_id) as min_attr_per_id
+    mode (total_id) as mode__attr_per_id
+from group_by_id
+;
 
 */
 
