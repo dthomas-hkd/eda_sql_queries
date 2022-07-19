@@ -36,9 +36,9 @@ group by 1
 order by 2 desc
 )
 select
-    avg(total_id) as average_attr_per_id
-    max (total_id) as max_attr_per_id
-    min (total_id) as min_attr_per_id
+    avg(total_id) as average_attr_per_id,
+    max (total_id) as max_attr_per_id,
+    min (total_id) as min_attr_per_id,
     mode (total_id) as mode__attr_per_id
 from group_by_id
 ;
@@ -57,7 +57,7 @@ order by 2 desc
 
 select
     avg(total_attribute1) as "AVERAGE attribute1",
-    max (total_attribute1) as "MAX attribute1,"
+    max (total_attribute1) as "MAX attribute1",
     min (total_attribute1) as "MIN attribute1",
     mode (total_attribute1) as "MODE attribute1"
 
